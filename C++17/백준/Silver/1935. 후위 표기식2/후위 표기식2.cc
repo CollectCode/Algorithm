@@ -4,9 +4,9 @@ double sta[30];
 double t[30];
 int main()
 {
-	double num;
+	int num;
 	int st=-1;
-	scanf("%lf", &num);
+	scanf("%d", &num);
 	scanf("%s", str);
 
 	for(int i=0;i<num;i++)
