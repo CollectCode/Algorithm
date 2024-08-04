@@ -52,8 +52,8 @@ int main()
 		if(max1<tm1) max1=tm1;
 		if(max2<tm2) max2=tm2;
 	}
-	int result = max1*max2;
-	printf("%d", result);
+
+	printf("%d", max1*max2);
 
 	return 0;
 }
