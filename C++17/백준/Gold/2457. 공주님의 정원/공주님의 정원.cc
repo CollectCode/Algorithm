@@ -23,9 +23,7 @@ int main()
 		date[i].se=lm*100+ld;
 		date[i].ing=date[i].se-date[i].fi;
 	}
-	
 	sort(date, date+f, chk);
-
 	for(int i=1;i<=f;i++)
 	{
 		if(date[i-1].fi>de || de>1130) break;
@@ -38,7 +36,6 @@ int main()
 				save=i-1;
 			}
 		}
-
 		if(date[i].fi>de)
 		{
 			if(max!=0)	
@@ -47,7 +44,6 @@ int main()
 				max=0;
 				result++;
 			} else	{
-				
 				de=date[i-1].se;
 				result++;
 			}
@@ -58,9 +54,7 @@ int main()
 			result++;
 		}
 	}
-
 	if(de<=1130) printf("0");
 	else printf("%d", result);
-
 	return 0;
 }
