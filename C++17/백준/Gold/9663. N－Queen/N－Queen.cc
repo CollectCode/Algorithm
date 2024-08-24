@@ -13,15 +13,11 @@ void chk(int x,int q)
 	}
 	for(int i=0;i<qu;i++)
 	{
-		if(s[i]==0&&le[x+i]==0&&ri[qu+(x-i)]==0)
+		if(!(s[i]+le[x+i]+ri[qu+(x-i)]))
 		{
-			s[i]=1;
-			le[x+i]=1;
-			ri[qu+(x-i)]=1;
+			s[i]=le[x+i]=ri[qu+(x-i)]=1;
 			chk(x+1,q+1);
-			s[i]=0;
-			le[x+i]=0;
-			ri[qu+(x-i)]=0;
+			s[i]=le[x+i]=ri[qu+(x-i)]=0;
 		}
 	}
 }
