@@ -2,7 +2,7 @@
 #include<algorithm>
 #define RANGE 100000
 using namespace std;
-int in[RANGE]={1},e=0;
+long long int in[RANGE]={1},e=0;
 int main()
 {
 	int num,sum=0;
@@ -22,6 +22,6 @@ int main()
 			if(j-i>=0) in[j]=in[j]+in[j-i];
 		}
 	}
-	printf("%d",in[sum/2]/2);
+	printf("%lld",in[sum/2]/2);
 	return 0;
 }
