@@ -7,6 +7,7 @@ void process(int start,int y)
 	if(hang[start][y]==1&&chk[y]==1) 
 	{
 		chk[y]=0;
+		printf("%d ",y);
 		re[index++]=y;
 		process(y,1);
 	}
@@ -26,9 +27,10 @@ int main()
 	}
 	chk[fir]=0;
 	re[index++]=fir;
+	printf("%d ",fir);
 	process(fir,1);
 	for(int i=1;i<=jung;i++) chk[i]=1;
-	for(int i=0;i<index;i++) printf("%d ",re[i]);
+
 	q[++top]=fir;
 	chk[fir]=0;
 	printf("\n%d ",fir);
