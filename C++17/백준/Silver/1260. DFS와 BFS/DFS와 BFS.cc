@@ -1,51 +1,54 @@
 #include<stdio.h>
-#define RANGE 1001
-int q[RANGE],hang[RANGE][RANGE],chk[RANGE],re[RANGE],index=0,jung,gan,fir;
-void process(int start,int y)
+#include<vector>
+#include<algorithm>
+using namespace std;
+vector<int> map[1010];
+int jung,gan,fir,bt=-1,top=-1,q[10000],chk[1010];
+void dfs(int x)
 {
-	if(start>jung||y>jung) return;
-	if(hang[start][y]==1&&chk[y]==1) 
+	printf("%d ",x);
+	chk[x]=1;
+	for(int i=0;i<map[x].size();i++)
 	{
-		chk[y]=0;
-		printf("%d ",y);
-		re[index++]=y;
-		process(y,1);
+		int a=map[x].at(i);
+		if(chk[a]==0) dfs(a);
 	}
-	process(start,y+1);
 }
-int main()
+void bfs(int y)
 {
-	int bt=-1,top=-1,a;
-	scanf("%d%d%d",&jung,&gan,&fir);
-	for(int i=1;i<=jung;i++) chk[i]=1;
-	for(int i=1;i<=gan;i++)
-	{
-		int x,y;
-		scanf("%d%d",&x,&y);
-		hang[x][y]=1;
-		hang[y][x]=1;
-	}
-	chk[fir]=0;
-	re[index++]=fir;
-	printf("%d ",fir);
-	process(fir,1);
-	for(int i=1;i<=jung;i++) chk[i]=1;
-
 	q[++top]=fir;
-	chk[fir]=0;
-	printf("\n%d ",fir);
+	printf("%d ",q[top]);
+	chk[y]=1;
 	while(top!=bt)
 	{
-		a=q[++bt];
-		for(int i=1;i<=jung;i++)
+		int a=q[++bt];
+		for(int i=0;i<map[a].size();i++)
 		{
-			if(hang[q[bt]][i]==1&&chk[i]==1)
+			int b=map[a].at(i);
+			if(chk[b]==0)
 			{
-				chk[i]=0;
-				q[++top]=i;
-				printf("%d ",i);
+				chk[b]=1;
+				q[++top]=b;
+				printf("%d ",b);
 			}
 		}
 	}
+}
+int main()
+{
+	scanf("%d%d%d",&jung,&gan,&fir);
+	for(int i=0;i<gan;i++) 
+	{
+		int num1,num2;
+		scanf("%d%d",&num1,&num2);
+		map[num1].push_back(num2);
+		map[num2].push_back(num1);
+	}
+	for(int i=1;i<=jung;i++) sort(map[i].begin(),map[i].end());
+	dfs(fir);
+	for(int i=0;i<1010;i++) chk[i]=0;
+	printf("\n");
+	bfs(fir);
+	
 	return 0;
 }
